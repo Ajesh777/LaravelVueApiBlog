@@ -47,6 +47,7 @@
 <script>
 //import { url } from 'Illuminate\Routing\UrlGenerator';
 export default {
+    
     data(){
         return{
             articles: [],
@@ -65,11 +66,12 @@ export default {
         this.fetchArt();
     },
 
-    methods: { 
+    methods: {
+
         fetchArt(page_url) {
             let vm = this;
-            page_url = page_url || `api/articles`
-            fetch(page_url)
+            //page_url = page_url || `http://www.synergysmartsol.com/lsapp/api/articles`
+            fetch('http://www.synergysmartsol.com/lsapp/api/articles', {mode: 'no-cors'})
                 .then(res => res.json())
                 .then(res => {
                     this.articles = res.data;
@@ -77,6 +79,7 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
+
         makePagination(meta, links) {
             let pagination = {
                 curr_page: meta.current_page,
@@ -86,6 +89,7 @@ export default {
             }
             this.pagination = pagination;
         },
+
         deleteArt(id) {
             if(confirm('Are you Sure?')) {
                 fetch(`api/article/${id}`, {

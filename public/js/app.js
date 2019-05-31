@@ -1831,9 +1831,11 @@ __webpack_require__.r(__webpack_exports__);
     fetchArt: function fetchArt(page_url) {
       var _this = this;
 
-      var vm = this;
-      page_url = page_url || "api/articles";
-      fetch(page_url).then(function (res) {
+      var vm = this; //page_url = page_url || `http://www.synergysmartsol.com/lsapp/api/articles`
+
+      fetch('http://www.synergysmartsol.com/lsapp/api/articles', {
+        mode: 'no-cors'
+      }).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this.articles = res.data;
